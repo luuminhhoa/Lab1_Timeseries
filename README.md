@@ -7,14 +7,15 @@
   <img src="https://img.shields.io/badge/Python-3.12+-blue?style=for-the-badge&logo=python" alt="Python" />
   <img src="https://img.shields.io/badge/Jupyter-Notebook-orange?style=for-the-badge&logo=jupyter" alt="Jupyter Notebook" />
   <img src="https://img.shields.io/badge/Topic-Time--Series%20Analysis-brightgreen?style=for-the-badge" alt="Time-Series" />
-  <img src="https://img.shields.io/badge/Library-Statsmodels%20%7C%20Pandas-purple?style=for-the-badge" alt="Libraries" />
+  <img src="https://img.shields.io/badge/Library-Statsmodels%20%7C%20Pandas%20%7C%20Numpy-purple?style=for-the-badge" alt="Libraries" />
 </p>
 
 | Hạng mục | Chi tiết |
 |---|---|
 | **Notebook chính** | `notebooks/main.ipynb` |
 | **Script bổ trợ** | `notebooks/missvl.py` (Mô phỏng missing value 1%) |
-| **Dữ liệu** | `data/raw/daily-min-temperatures.csv` (3650 quan sát nhiệt độ tối thiểu tại Melbourne) |
+| **Dữ liệu gốc** | [`daily-min-temperatures.csv`](https://www.kaggle.com/datasets/balakrishcodes/others/data?select=daily-min-temperatures.csv) (3650 quan sát nhiệt độ tối thiểu tại Melbourne) |
+| **Đường dẫn local** | `data/raw/daily-min-temperatures.csv` |
 | **Dữ liệu đã xử lý** | `data/processed/daily-min-temperatures-missing.csv` |
 
 </div>
