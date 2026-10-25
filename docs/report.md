@@ -95,7 +95,16 @@ $$Y_t = Trend_t + Seasonal_t + Residual_t$$
    * Chu kỳ mùa vụ giải thích phần lớn phương sai biến động của toàn bộ chuỗi.
 3. **Phần dư thừa ($Residual_t$):**
    * Phân bố ngẫu nhiên xung quanh mức 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]`.
-   * Thành phần dư thừa có tính chất xấp xỉ White Noise, chứng minh mô hình STL đã bóc tách triệt để các tín hiệu quy luật của chuỗi.
+   * **Kiểm định tính chất White Noise bằng biểu đồ ACF:**
+     * Trích xuất chuỗi phần dư $R_t$ và vẽ hàm tự tương quan ACF đến 36 lags.
+     * Hầu hết các hệ số tự tương quan tại các độ trễ ($k \ge 1$) đều nằm gọn bên trong dải tin cậy 95% ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$), đạt tỷ lệ 91.7% lag không có ý nghĩa thống kê.
+     * Không còn dấu hiệu của xu hướng hay chu kỳ mùa vụ còn sót lại, xác nhận thành phần dư thừa mang đầy đủ đặc tính của **White Noise thuần túy**.
+
+<p align="center">
+  <img src="images/residual_acf.png" width="80%" alt="Biểu đồ ACF của Residual STL">
+  <br>
+  <em>Hình 3b: Biểu đồ ACF của thành phần Residual cho thấy đặc trưng White Noise rõ nét.</em>
+</p>
 
 ---
 

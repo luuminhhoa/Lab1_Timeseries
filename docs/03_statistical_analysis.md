@@ -62,4 +62,11 @@ Trong đó:
    * Chu kỳ mùa vụ chiếm phần lớn năng lượng biến thiên của toàn bộ chuỗi.
 3. **Phần dư ($R_t$):**
    * Dao động ngẫu nhiên xung quanh 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]`.
-   * Biểu đồ ACF của thành phần dư thừa suy biến nhanh về 0 $\rightarrow$ Khẳng định thuật toán Loess của STL đã bóc tách triệt để các tín hiệu mang tính quy luật.
+   * **Kiểm định White Noise qua biểu đồ ACF:**
+     * Biểu đồ ACF của thành phần dư thừa suy biến nhanh về 0 và dao động ngẫu nhiên quanh mức 0.
+     * Tỷ lệ các độ trễ nằm trong khoảng tin cậy 95% ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$) đạt **91.7%** (33/36 lags).
+     * Khẳng định thuật toán Loess của STL đã bóc tách triệt để các tín hiệu mang tính quy luật (xu hướng, mùa vụ), chỉ để lại sai số ngẫu nhiên thuần túy (White Noise).
+
+<p align="center">
+  <img src="images/residual_acf.png" width="80%" alt="Biểu đồ ACF của Residual STL">
+</p>
