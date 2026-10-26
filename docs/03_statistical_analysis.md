@@ -61,12 +61,12 @@ Trong đó:
    * Biên độ dao động mạnh và cực kỳ ổn định từ $-5.0^\circ\text{C}$ đến $+5.0^\circ\text{C}$ (chênh lệch đỉnh - đáy lên tới $10^\circ\text{C}$).
    * Chu kỳ mùa vụ chiếm phần lớn năng lượng biến thiên của toàn bộ chuỗi.
 3. **Phần dư ($R_t$):**
-   * Dao động ngẫu nhiên xung quanh 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]`.
-   * **Kiểm định White Noise qua biểu đồ ACF:**
-     * Biểu đồ ACF của thành phần dư thừa suy biến nhanh về 0 và dao động ngẫu nhiên quanh mức 0.
-     * Tỷ lệ các độ trễ nằm trong khoảng tin cậy 95% ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$) đạt **91.7%** (33/36 lags).
-     * Khẳng định thuật toán Loess của STL đã bóc tách triệt để các tín hiệu mang tính quy luật (xu hướng, mùa vụ), chỉ để lại sai số ngẫu nhiên thuần túy (White Noise).
+   * Dao động ngẫu nhiên xung quanh 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]` (kỳ vọng $E[R_t] = -0.0072 \approx 0$, độ lệch chuẩn $0.6858^\circ\text{C}$).
+   * **Kiểm định White Noise qua biểu đồ ACF (36 lags):**
+     * Có **$3/36$ độ trễ ($8.33\%$)** vượt ra ngoài dải tin cậy 95% Bartlett ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$). Do tỷ lệ vi phạm $8.33\% > 5\%$, chuỗi phần dư **chưa đạt chuẩn Nhiễu trắng thuần túy (Pure White Noise) 100%**.
+     * Cụ thể, các gai âm tại chu kỳ $s=12$ ($\hat{\rho}_{12} = -0.2348$) và $2s=24$ ($\hat{\rho}_{24} = -0.1822$), cùng gai dương nhẹ tại lag 20 ($\hat{\rho}_{20} = +0.1976$), phản ánh hiện tượng **Over-smoothing** của Loess, để lại một lượng nhỏ tự tương quan âm tuần hoàn.
+     * **Kết luận:** Mặc dù mức độ tự tương quan đã giảm sút vượt bậc so với chuỗi gốc ($\rho_1 \approx 0.77 \rightarrow \rho_1 \approx -0.13$) và phần lớn các độ trễ ($91.7\%$) nằm trong dải tin cậy, phần dư chỉ đạt tính chất **xấp xỉ gần với White Noise** trong thực hành chứ chưa hoàn toàn sạch sẽ tuyệt đối.
 
 <p align="center">
-  <img src="images/residual_acf.png" width="80%" alt="Biểu đồ ACF của Residual STL">
+  <img src="images/residual_acf.png" width="85%" alt="Biểu đồ ACF của Residual STL">
 </p>

@@ -94,16 +94,16 @@ $$Y_t = Trend_t + Seasonal_t + Residual_t$$
    * Chi phối cực kỳ mạnh mẽ và ổn định đều đặn qua từng năm với biên độ $\pm 5^\circ\text{C}$ (chênh lệch đỉnh - đáy lên tới $10^\circ\text{C}$).
    * Chu kỳ mùa vụ giải thích phần lớn phương sai biến động của toàn bộ chuỗi.
 3. **Phần dư thừa ($Residual_t$):**
-   * Phân bố ngẫu nhiên xung quanh mức 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]`.
-   * **Kiểm định tính chất White Noise bằng biểu đồ ACF:**
-     * Trích xuất chuỗi phần dư $R_t$ và vẽ hàm tự tương quan ACF đến 36 lags.
-     * Hầu hết các hệ số tự tương quan tại các độ trễ ($k \ge 1$) đều nằm gọn bên trong dải tin cậy 95% ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$), đạt tỷ lệ 91.7% lag không có ý nghĩa thống kê.
-     * Không còn dấu hiệu của xu hướng hay chu kỳ mùa vụ còn sót lại, xác nhận thành phần dư thừa mang đầy đủ đặc tính của **White Noise thuần túy**.
+   * Phân bố ngẫu nhiên xung quanh mức 0 trong phạm vi hẹp `[-1.5°C, +1.5°C]` (kỳ vọng $E[R_t] = -0.0072 \approx 0$, độ lệch chuẩn $0.6858^\circ\text{C}$).
+   * **Kiểm định tính chất White Noise bằng biểu đồ ACF (36 lags):**
+     * Có **$3/36$ độ trễ ($8.33\%$)** vượt ra ngoài dải tin cậy 95% Bartlett ($\pm 1.96/\sqrt{120} \approx \pm 0.1789$). Do tỷ lệ vượt ngưỡng $> 5\%$ (ngưỡng tối đa cho phép của White Noise), phần dư **chưa đạt chuẩn Nhiễu trắng thuần túy (Pure White Noise) 100%**.
+     * **Vết tích mùa vụ âm (Seasonal Artifact):** Hai độ trễ vượt ngưỡng rơi trúng vào bội số chu kỳ mùa vụ 12 tháng: **Lag 12 ($\hat{\rho}_{12} = -0.2348$)** và **Lag 24 ($\hat{\rho}_{24} = -0.1822$)**, cùng một gai dương nhẹ ở **Lag 20 ($\hat{\rho}_{20} = +0.1976$)**. Dấu âm này phản ánh hiện tượng **Over-smoothing (làm mịn quá đà)** của thuật toán Loess khi bóc tách mùa vụ, khiến phần dư còn tồn đọng một lượng nhỏ tự tương quan âm tuần hoàn.
+     * **Kết luận:** Mô hình STL đã bóc tách được phần lớn xu hướng và mùa vụ (hệ số tự tương quan đã giảm sâu từ $0.77$ ở chuỗi gốc xuống quanh mức $0$). Tuy nhiên, phần dư chỉ mang tính chất **xấp xỉ gần với White Noise** chứ chưa hoàn toàn sạch sẽ tuyệt đối.
 
 <p align="center">
-  <img src="images/residual_acf.png" width="80%" alt="Biểu đồ ACF của Residual STL">
+  <img src="images/residual_acf.png" width="85%" alt="Biểu đồ ACF của Residual STL">
   <br>
-  <em>Hình 3b: Biểu đồ ACF của thành phần Residual cho thấy đặc trưng White Noise rõ nét.</em>
+  <em>Hình 3b: Lược đồ ACF của thành phần Phần dư (Residual) từ phân rã STL qua 36 độ trễ.</em>
 </p>
 
 ---
